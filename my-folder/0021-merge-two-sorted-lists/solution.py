@@ -10,24 +10,21 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        dummy = curr = ListNode(0)
+        #use dummy head node and ensure that neither of the lists r null
+        dummy = ListNode()
+        tail = dummy
         while list1 and list2:
             if list1.val < list2.val:
-                curr.next = list1
+                tail.next = list1
                 list1 = list1.next
             else:
-                curr.next = list2
+                tail.next = list2
                 list2 = list2.next
-            curr = curr.next
-    
-        if list1:
-            curr.next = list1
-        else:
-            curr.next = list2
+            tail = tail.next
+        #check if the lists r diffferent lengtsh
+        if list2:
+            tail.next = list2
+        elif list1:
+            tail.next = list1
         return dummy.next
-    
 
-                
-
-        
-        
