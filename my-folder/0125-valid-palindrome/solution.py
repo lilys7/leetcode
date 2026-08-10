@@ -4,21 +4,19 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        #strip the string and make all lowercase
-        #if reversed v is the same, ret true
-        f, l = 0, len(s) - 1
-        s = s.lower()
-        while f < l:
-            if not(s[f].isalnum()):
-                f+=1
-                continue
-            if not(s[l].isalnum()):
-                l-=1
-                continue
-            if s[f] != s[l]:
+        #use two pointers
+        #strip the string
+        lp = 0
+        rp = len(s) - 1
+        while lp < rp:
+            while lp < rp and not s[lp].isalnum():
+                lp += 1
+            while lp < rp and not s[rp].isalnum():
+                rp -= 1
+            if s[lp].lower() != s[rp].lower():
                 return False
-            f+=1
-            l-=1
+            lp += 1
+            rp -= 1
         return True
 
 
