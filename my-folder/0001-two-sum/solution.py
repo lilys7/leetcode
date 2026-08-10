@@ -5,12 +5,18 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        # create prev hashmap
-        prevMap = {}
-        for i, n in enumerate(nums):
-            diff = target - n
-            if diff in prevMap:
-                return [prevMap[diff], i]
-            prevMap[n] = i
-
+        #hashmap with key index pair
+        numMap = {}
+        ret = []
+        #enumerate index comes first
+        for i, num in enumerate(nums):
+            numMap[num] = i
+        
+        for n in range(len(nums)):
+            sub = target - nums[n]
+            if ((sub in numMap) and (n != numMap[sub])):
+                ret.append(n)
+                ret.append(numMap[sub])
+                return ret
+        return None
         
