@@ -4,20 +4,23 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        #need a stack to keep track, return true if the stack is empty once
-        #everything removed, return false otherwise
+        #hashmap type pairs
+        pairs = { ')' : '(', ']' : '[', '}' : '{'}
+        chars = list(s)
         stack = []
-        closeToOpenMap = {")": "(", "]":"[", "}":"{"}
-        for c in s:
-            #we wanna see if c is a cloing bracket
-            if c in closeToOpenMap:
-                if stack and stack[-1] == closeToOpenMap[c]:
+        for ch in chars:
+            if ch not in pairs:
+                stack.append(ch)
+            else:
+                if stack and pairs[ch] == stack[-1]:
                     stack.pop()
                 else:
                     return False
-            else:
-                stack.append(c)
-        return True if not stack else False
+
+        if not stack:
+            return True
+        return False
+        
 
 
         
