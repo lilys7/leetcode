@@ -4,23 +4,23 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        #hashmap type pairs
-        pairs = { ')' : '(', ']' : '[', '}' : '{'}
-        chars = list(s)
-        stack = []
-        for ch in chars:
-            if ch not in pairs:
-                stack.append(ch)
+        #use a stack and hashmap
+        closing = { '}' : '{', ')' : '(', ']' : '['}
+        seen = []
+        for ch in s:
+            if ch not in closing:
+                seen.append(ch)
             else:
-                if stack and pairs[ch] == stack[-1]:
-                    stack.pop()
+                if seen:
+                    if ch in closing and closing[ch] != seen.pop():
+                        return False
                 else:
                     return False
-
-        if not stack:
+        if not seen:
             return True
-        return False
-        
+        else:
+            return False
+
 
 
         
