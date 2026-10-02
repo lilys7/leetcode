@@ -1,16 +1,10 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-        #loop thru all strs. have a hashmap of sets. If the ordered ver. of the word is equal to a prev ordered version, add to that set. otherwise add on its own.
-        map = defaultdict(list) #sorted ver : actual word
+class Solution:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        mapping = defaultdict(list)
         for s in strs:
-            sort = sorted(s)
-            sorted_str = "".join(sort)
-            map[sorted_str].append(s)
-        return map.values()
+            sortStr = ''.join(sorted(s))
+            print(sortStr)
+            mapping[sortStr].append(s)
+        return list(mapping.values())
 
 
-        
