@@ -1,17 +1,18 @@
-class Solution(object):
-    def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        visited = set()
         lp = 0
-        maxLen = 0
-        seen = set()
-        for rp in range(len(s)):
-            while s[rp] in seen:
-                seen.remove(s[lp])
+        num = 0
+        for r in range(len(s)):
+            while s[r] in visited:
+                visited.remove(s[lp])
                 lp += 1
-            seen.add(s[rp])
-            maxLen = max(maxLen, rp - lp +1)
-        return maxLen
+
+            visited.add(s[r])
+            num = max(num, len(visited))
+        return num
+
+            
+            
+
 
