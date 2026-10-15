@@ -1,0 +1,27 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isCompleteTree(self, root: TreeNode | None) -> bool:
+        #make a list of all the values w breadth first search, if any values are None ret false?
+        #dfs is either preorder, inorder, or postorder
+        #we want to use breadth first search w a queue
+        if not root:
+            return True
+        
+        queue = deque([root])
+        found_null = False
+        while queue:
+            node = queue.popleft()
+            if node is None:
+                found_null = True
+            else:
+                if found_null:
+                    return False
+                queue.append(node.left)
+                queue.append(node.right)
+        return True
+
